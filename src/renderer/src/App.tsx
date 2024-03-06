@@ -1,8 +1,14 @@
-function App(): JSX.Element {
+import { Content, DraggableTopBar, RootLayout, SideBar } from './components'
+
+const App = (): JSX.Element => {
   return (
-    <div>
-      <span>hello from Electron</span>
-    </div>
+    <>
+      <DraggableTopBar />
+      <RootLayout>
+        <SideBar className="p-2">Sidebar</SideBar>
+        <Content className="border-l bg-zinc-900/50 border-l-white/20">Content</Content>
+      </RootLayout>
+    </>
   )
 }
 
