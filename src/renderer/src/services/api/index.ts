@@ -21,6 +21,8 @@ const fetchWithHeaders = async (url: string, options: any = {}) => {
       // Token expired
       console.log('Access token expired')
       await window.context.generateAccessToken()
+
+      // TODO: when token expired, regenerate it and refersh tha page
     }
 
     const data = await res.json()
