@@ -1,4 +1,4 @@
-import { contextBridge } from 'electron'
+import { contextBridge, ipcRenderer } from 'electron'
 
 if (!process.contextIsolated) {
   throw new Error('contextIsolation must be enabled in the BrowserWindow')
@@ -6,7 +6,9 @@ if (!process.contextIsolated) {
 
 try {
   contextBridge.exposeInMainWorld('context', {
-    // TODO
+    getCredentials: () => ipcRenderer.invoke('getCredentials'),
+    generateAccessToken: () => ipcRenderer.invoke('generateAccessToken'),
+    readAccessToken: () => ipcRenderer.invoke('readAccessToken')
   })
 } catch (e) {
   console.error(e)

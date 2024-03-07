@@ -2,6 +2,7 @@ import { electronApp, is, optimizer } from '@electron-toolkit/utils'
 import { BrowserWindow, app, ipcMain, shell } from 'electron'
 import { join } from 'path'
 import icon from '../../resources/icon.png?asset'
+import { generateAccessToken, readAccessToken, readCredentails } from './lib'
 
 function createWindow(): void {
   // Create the browser window.
@@ -58,8 +59,9 @@ app.whenReady().then(() => {
     optimizer.watchWindowShortcuts(window)
   })
 
-  // IPC test
-  ipcMain.on('ping', () => console.log('pong'))
+  ipcMain.handle('getCredentials', () => readCredentails())
+  ipcMain.handle('generateAccessToken', () => generateAccessToken())
+  ipcMain.handle('readAccessToken', () => readAccessToken())
 
   createWindow()
 
