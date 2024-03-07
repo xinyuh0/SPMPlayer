@@ -37,10 +37,9 @@ export const generateAccessToken = async (): Promise<string | null> => {
     const data = await res.json()
 
     // Write encrypted token to file
-    await writeJSON(
-      `${app.getPath('userData')}/${TOKEN_FILE_NAME}`,
-      safeStorage.encryptString(data.access_token).toString('latin1')
-    )
+    await writeJSON(`${app.getPath('userData')}/${TOKEN_FILE_NAME}`, {
+      accessToken: safeStorage.encryptString(data.access_token).toString('latin1')
+    })
 
     return data.access_token
   } catch (e) {
