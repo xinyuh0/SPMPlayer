@@ -1,4 +1,5 @@
 import { SPOTIFY_BASE_URL } from '@shared/constant'
+import { GetGenreResponse } from '@shared/models'
 
 const fetchWithHeaders = async (url: string, options: any = {}) => {
   try {
@@ -33,16 +34,31 @@ const fetchWithHeaders = async (url: string, options: any = {}) => {
   }
 }
 
-const get = async (url: string, options = {}) => {
-  return await fetchWithHeaders(url, (options = { ...options, method: 'GET' }))
+const get = async (url: string, params = {}, options = {}) => {
+  const query = new URLSearchParams()
+  Object.keys(params).forEach((key) => query.set(key, params[key]))
+
+  const urlWithQuery = query.size > 0 ? url + '?' + query.toString() : url
+
+  return await fetchWithHeaders(urlWithQuery, (options = { ...options, method: 'GET' }))
 }
 
 const post = async (url: string, options = {}) => {
   return await fetchWithHeaders(url, (options = { ...options, method: 'POST' }))
 }
 
-export const getRecommandations = async () => {
-  const { genres } = await get('/recommendations/available-genre-seeds')
+export const getGenres = async (): Promise<string[]> => {
+  const { genres } = (await get('/recommendations/available-genre-seeds')) as GetGenreResponse
 
-  console.log(genres)
+  return genres
+}
+
+export const getRecommandations = async (genreSeeds: string[]) => {
+  const res = new Map<string, any>()
+
+  for (const seed of genreSeeds) {
+    const { tracks } = await get('/recommendations', { seed_genres: [seed], market: 'JP' })
+  }
+
+  return res
 }

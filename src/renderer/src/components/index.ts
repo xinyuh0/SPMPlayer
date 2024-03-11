@@ -1,4 +1,7 @@
 export * from './ActionButtonGroup'
 export * from './Button'
+export * from './Card'
+export * from './GenreCardList'
+export * from './Title'
 export * from './layout'
 export * from './pages'
