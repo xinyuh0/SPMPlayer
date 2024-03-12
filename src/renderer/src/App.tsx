@@ -7,7 +7,7 @@ const App = (): JSX.Element => {
     <BrowserRouter>
       <DraggableTopBar />
       <RootLayout>
-        <SideBar className="p-2">
+        <SideBar className="px-2">
           <ActionButtonGroup className="flex flex-col justify-start items-center" />
         </SideBar>
         <Content className="border-l bg-zinc-900/50 border-l-white/20">

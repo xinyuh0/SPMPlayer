@@ -1,9 +1,10 @@
+import { cn } from '@renderer/utils'
+import { ComponentProps } from 'react'
 import { BackwardButton, ForwardButton } from './Button'
 
-export const BrowseHistoryButtonGroup = () => {
+export const BrowseHistoryButtonGroup = ({ className, ...props }: ComponentProps<'div'>) => {
   return (
-    // Set z-index to 10, so the button group won't be covered by draggable header
-    <div className="flex flex-row z-10">
+    <div className={cn('flex flex-row items-center', className)} {...props}>
       <BackwardButton />
       <ForwardButton className="ml-2" />
     </div>
