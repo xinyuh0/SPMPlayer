@@ -5,9 +5,17 @@ import { LuSearch, LuX } from 'react-icons/lu'
 
 export type SearchInputProps = ComponentProps<'div'> & {
   placeholder?: string
+  fetchData: (value: string) => void
+  handleValChange: (value: string) => void
 }
 
-export const SearchInput = ({ className, placeholder, ...props }: SearchInputProps) => {
+export const SearchInput = ({
+  className,
+  placeholder,
+  fetchData,
+  handleValChange,
+  ...props
+}: SearchInputProps) => {
   const [value, setValue] = useState<string>('')
   const [isFocused, setIsFocused] = useState<boolean>(true)
 
@@ -25,10 +33,11 @@ export const SearchInput = ({ className, placeholder, ...props }: SearchInputPro
 
   const handleClearInput = () => {
     setValue('')
+    handleValChange('')
   }
 
   useEffect(() => {
-    // fetch data here
+    fetchData(debouncedValue)
   }, [debouncedValue])
 
   useEffect(() => {
@@ -72,6 +81,7 @@ export const SearchInput = ({ className, placeholder, ...props }: SearchInputPro
         className="h-full flex-1 ml-2 bg-transparent outline-0"
         onChange={(e) => {
           setValue(e.target.value)
+          handleValChange(e.target.value)
         }}
       />
       <LuX

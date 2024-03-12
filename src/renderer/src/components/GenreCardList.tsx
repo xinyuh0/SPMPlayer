@@ -8,13 +8,11 @@ export const GenreCardList = ({ className, ...props }: ComponentProps<'div'>) =>
 
   return (
     <div className={cn('flex flex-row flex-wrap', className)} {...props}>
-      {loading ? (
-        <div>Loading...</div>
-      ) : (
-        genres.map((genre, index) => (
-          <GenreCard className="w-fit mr-2 mb-2" key={index} title={genre} />
-        ))
-      )}
+      {loading
+        ? 'loading...'
+        : genres.map((genre, index) => (
+            <GenreCard className="w-fit mr-2 mb-2" key={index} title={genre} />
+          ))}
     </div>
   )
 }
