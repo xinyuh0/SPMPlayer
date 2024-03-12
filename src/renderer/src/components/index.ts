@@ -1,4 +1,5 @@
 export * from './ActionButtonGroup'
+export * from './BrowseHistoryButtonGroup'
 export * from './Button'
 export * from './Card'
 export * from './GenreCardList'

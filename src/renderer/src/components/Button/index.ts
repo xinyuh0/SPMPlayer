@@ -1,3 +1,5 @@
 export * from './ActionButton'
+export * from './BackwardButton'
+export * from './ForwardButton'
 export * from './HomeButton'
 export * from './SearchButton'

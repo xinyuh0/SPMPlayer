@@ -1,10 +1,10 @@
-import { HashRouter, Route, Routes } from 'react-router-dom'
+import { BrowserRouter, Route, Routes } from 'react-router-dom'
 import { ActionButtonGroup, Content, DraggableTopBar, RootLayout, SideBar } from './components'
 import { Home, Search } from './components/pages'
 
 const App = (): JSX.Element => {
   return (
-    <HashRouter>
+    <BrowserRouter>
       <DraggableTopBar />
       <RootLayout>
         <SideBar className="p-2">
@@ -17,7 +17,7 @@ const App = (): JSX.Element => {
           </Routes>
         </Content>
       </RootLayout>
-    </HashRouter>
+    </BrowserRouter>
   )
 }
 

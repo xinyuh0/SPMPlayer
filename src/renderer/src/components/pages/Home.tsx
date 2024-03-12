@@ -1,3 +1,10 @@
+import { HomeTopBar } from '../layout'
+
 export const Home = () => {
-  return <div>Home</div>
+  return (
+    <>
+      <HomeTopBar />
+      <div>Home</div>
+    </>
+  )
 }
