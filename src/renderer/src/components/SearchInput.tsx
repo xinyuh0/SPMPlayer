@@ -50,9 +50,6 @@ export const SearchInput = ({ className, placeholder, ...props }: SearchInputPro
       }
     }
 
-    // Automatically focus input when first mount
-    focus()
-
     document.addEventListener('click', handleMouseClickEvent)
 
     return () => {

@@ -15,7 +15,7 @@
 
     @apply bg-transparent;
 
-    @apply font-mono antialiased text-white;
+    @apply antialiased text-white;
 
     @apply overflow-hidden;
   }
@@ -26,5 +26,17 @@
 
   button {
     -webkit-app-region: no-drag;
+  }
+
+  ::-webkit-scrollbar {
+    display: none;
+  }
+
+  ::-webkit-scrollbar-track {
+    /* Customize the scrollbar track */
+  }
+
+  ::-webkit-scrollbar-thumb {
+    /* Customize the scrollbar thumb */
   }
 }

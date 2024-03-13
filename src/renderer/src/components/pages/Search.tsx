@@ -22,7 +22,7 @@ export const Search = () => {
   return (
     <>
       <SearchTopBar className="px-4" />
-      {emptyQuery ? (
+      {emptyQuery || (!isLoading && data === undefined) ? (
         <>
           <Title className="px-4">Browse All Genres</Title>
           <GenreCardList className="px-4" />

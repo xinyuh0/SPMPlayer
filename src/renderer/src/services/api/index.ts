@@ -1,7 +1,5 @@
-import { sleep } from '@renderer/utils'
 import { SPOTIFY_BASE_URL } from '@shared/constant'
-import { GetGenreResponse, SearchType } from '@shared/models'
-import { mockSearchResult } from './mock'
+import { GetGenreResponse, SearchResult, SearchType } from '@shared/models'
 
 const fetchWithHeaders = async (url: string, options: any = {}) => {
   const token = await window.context.readAccessToken()
@@ -60,15 +58,11 @@ export const getRecommandations = async (genreSeeds: string[]) => {
   return res
 }
 
-export const search = async (query: string, market: string = 'JP') => {
-  await sleep(1000)
-  // TODO: remove mock data
-  return mockSearchResult
-
-  return await get('/search', {
+export const search = async (query: string, market: string = 'JP'): Promise<SearchResult> => {
+  return (await get('/search', {
     q: query,
     type: Object.values(SearchType) as string[],
     market,
-    limit: 10
-  })
+    limit: 5
+  })) as SearchResult
 }
