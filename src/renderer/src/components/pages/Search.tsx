@@ -1,33 +1,34 @@
-import { useSearch } from '@renderer/hooks/useSearch'
-import { useState } from 'react'
+import { search } from '@renderer/services/api'
+import { useQuery } from '@tanstack/react-query'
+import { useParams } from 'react-router-dom'
 import { GenreCardList } from '../GenreCardList'
-import { SearchResultList } from '../SearchResultList'
+import { SearchResult } from '../SearchResult'
 import { Title } from '../Title'
 import { SearchTopBar } from '../layout'
 
 export const Search = () => {
-  const [emptyInput, setEmptyInput] = useState<boolean>(true)
-  const { res, fetchData, clearRes } = useSearch()
+  const { query } = useParams()
 
-  const handleInputValChange = (value: string) => {
-    if (value.length === 0) {
-      setEmptyInput(true)
-      clearRes()
-    } else {
-      setEmptyInput(false)
-    }
-  }
+  // Display genre list by default (when route is '/search')
+  const emptyQuery = query === undefined
+
+  // TODO: optimize here
+  const { data, isLoading } = useQuery({
+    queryKey: ['search', query],
+    queryFn: () => search(query as string),
+    enabled: query !== undefined
+  })
 
   return (
     <>
-      <SearchTopBar fetchData={fetchData} handleValChange={handleInputValChange} className="px-4" />
-      {emptyInput || res === null ? (
+      <SearchTopBar className="px-4" />
+      {emptyQuery ? (
         <>
           <Title className="px-4">Browse All Genres</Title>
           <GenreCardList className="px-4" />
         </>
       ) : (
-        <SearchResultList className="px-4" res={res} />
+        <SearchResult className="px-4" data={data} isLoading={isLoading} />
       )}
     </>
   )

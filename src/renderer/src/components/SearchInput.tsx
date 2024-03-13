@@ -2,20 +2,16 @@ import { useDebounce } from '@renderer/hooks/useDebounce'
 import { cn } from '@renderer/utils'
 import { ComponentProps, useEffect, useRef, useState } from 'react'
 import { LuSearch, LuX } from 'react-icons/lu'
+import { useLocation, useNavigate } from 'react-router-dom'
 
 export type SearchInputProps = ComponentProps<'div'> & {
   placeholder?: string
-  fetchData: (value: string) => void
-  handleValChange: (value: string) => void
 }
 
-export const SearchInput = ({
-  className,
-  placeholder,
-  fetchData,
-  handleValChange,
-  ...props
-}: SearchInputProps) => {
+export const SearchInput = ({ className, placeholder, ...props }: SearchInputProps) => {
+  const navigate = useNavigate()
+  const location = useLocation()
+
   const [value, setValue] = useState<string>('')
   const [isFocused, setIsFocused] = useState<boolean>(true)
 
@@ -24,7 +20,7 @@ export const SearchInput = ({
 
   const debouncedValue = useDebounce(value)
 
-  const handleFocus = () => {
+  const focus = () => {
     if (inputRef.current) {
       inputRef.current.focus()
       setIsFocused(true)
@@ -33,11 +29,18 @@ export const SearchInput = ({
 
   const handleClearInput = () => {
     setValue('')
-    handleValChange('')
+    navigate('/search', { replace: true })
   }
 
   useEffect(() => {
-    fetchData(debouncedValue)
+    if (debouncedValue.length === 0) {
+      // Avoid rerender Search Component when first mount
+      if (location.pathname !== '/search') {
+        navigate('/search', { replace: true })
+      }
+    } else {
+      navigate(`/search/${encodeURIComponent(debouncedValue)}`, { replace: true })
+    }
   }, [debouncedValue])
 
   useEffect(() => {
@@ -48,7 +51,7 @@ export const SearchInput = ({
     }
 
     // Automatically focus input when first mount
-    handleFocus()
+    focus()
 
     document.addEventListener('click', handleMouseClickEvent)
 
@@ -65,7 +68,7 @@ export const SearchInput = ({
         className
       )}
       ref={containerRef}
-      onClick={handleFocus}
+      onClick={focus}
       {...props}
     >
       <LuSearch
@@ -81,7 +84,6 @@ export const SearchInput = ({
         className="h-full flex-1 ml-2 bg-transparent outline-0"
         onChange={(e) => {
           setValue(e.target.value)
-          handleValChange(e.target.value)
         }}
       />
       <LuX

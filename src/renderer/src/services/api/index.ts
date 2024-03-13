@@ -1,37 +1,34 @@
+import { sleep } from '@renderer/utils'
 import { SPOTIFY_BASE_URL } from '@shared/constant'
-import { GetGenreResponse } from '@shared/models'
+import { GetGenreResponse, SearchType } from '@shared/models'
+import { mockSearchResult } from './mock'
 
 const fetchWithHeaders = async (url: string, options: any = {}) => {
-  try {
-    const token = await window.context.readAccessToken()
+  const token = await window.context.readAccessToken()
 
-    let headers = {
-      Authorization: `Bearer ${token}`
-    }
-
-    if (options.headers) {
-      headers = {
-        ...headers,
-        ...options.headers
-      }
-    }
-
-    const res = await fetch(`${SPOTIFY_BASE_URL}${url}`, { ...options, headers })
-
-    if (res.status === 401) {
-      // Token expired
-      console.log('Access token expired')
-      await window.context.generateAccessToken()
-
-      // TODO: when token expired, regenerate it and refersh tha page
-    }
-
-    const data = await res.json()
-    return data
-  } catch (e) {
-    console.error(e)
-    return null
+  let headers = {
+    Authorization: `Bearer ${token}`
   }
+
+  if (options.headers) {
+    headers = {
+      ...headers,
+      ...options.headers
+    }
+  }
+
+  const res = await fetch(`${SPOTIFY_BASE_URL}${url}`, { ...options, headers })
+
+  if (res.status === 401) {
+    // Token expired
+    console.log('Access token expired')
+    await window.context.generateAccessToken()
+
+    // TODO: when token expired, regenerate it and refersh tha page
+  }
+
+  const data = await res.json()
+  return data
 }
 
 const get = async (url: string, params = {}, options = {}) => {
@@ -61,4 +58,17 @@ export const getRecommandations = async (genreSeeds: string[]) => {
   }
 
   return res
+}
+
+export const search = async (query: string, market: string = 'JP') => {
+  await sleep(1000)
+  // TODO: remove mock data
+  return mockSearchResult
+
+  return await get('/search', {
+    q: query,
+    type: Object.values(SearchType) as string[],
+    market,
+    limit: 10
+  })
 }
