@@ -1,4 +1,4 @@
-import { HomeTopBar } from '../layout'
+import { HomeTopBar } from '@renderer/components'
 
 export const Home = () => {
   return (

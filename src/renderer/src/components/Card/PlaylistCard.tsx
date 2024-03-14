@@ -1,6 +1,6 @@
+import { CardContainer, CardContainerProps } from '@renderer/components'
 import { cn } from '@renderer/utils'
 import { PlayList } from '@shared/models'
-import { CardContainer, CardContainerProps } from './CardContainer'
 
 export type PlaylistCardProps = CardContainerProps & {
   data: PlayList

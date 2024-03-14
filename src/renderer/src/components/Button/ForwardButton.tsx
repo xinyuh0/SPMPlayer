@@ -1,7 +1,7 @@
+import { ActionButton, ActionButtonProps } from '@renderer/components'
 import { cn } from '@renderer/utils'
 import { LuArrowRight } from 'react-icons/lu'
 import { useNavigate } from 'react-router-dom'
-import { ActionButton, ActionButtonProps } from './ActionButton'
 
 export const ForwardButton = ({ className, ...props }: ActionButtonProps) => {
   const navigate = useNavigate()

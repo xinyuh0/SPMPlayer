@@ -1,7 +1,7 @@
+import { ActionButton, ActionButtonProps } from '@renderer/components'
 import { cn } from '@renderer/utils'
 import { LuHome } from 'react-icons/lu'
 import { useLocation, useNavigate } from 'react-router-dom'
-import { ActionButton, ActionButtonProps } from './ActionButton'
 
 export const HomeButton = ({ ...props }: ActionButtonProps) => {
   const navigate = useNavigate()

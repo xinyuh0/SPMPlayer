@@ -1,7 +1,7 @@
+import { CardContainer, CardContainerProps } from '@renderer/components'
 import { cn } from '@renderer/utils'
 import { Album } from '@shared/models'
 import { useMemo } from 'react'
-import { CardContainer, CardContainerProps } from './CardContainer'
 
 export type AlbumCardProps = CardContainerProps & {
   data: Album

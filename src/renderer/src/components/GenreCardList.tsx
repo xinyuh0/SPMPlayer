@@ -1,7 +1,7 @@
+import { GenreCard } from '@renderer/components'
 import { useFetchGenres } from '@renderer/hooks'
 import { cn } from '@renderer/utils'
 import { ComponentProps } from 'react'
-import { GenreCard } from './Card'
 
 export const GenreCardList = ({ className, ...props }: ComponentProps<'div'>) => {
   const { loading, genres } = useFetchGenres()

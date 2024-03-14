@@ -1,8 +1,6 @@
+import { BrowseHistoryButtonGroup, SearchInput, TopBarContainer } from '@renderer/components'
 import { cn } from '@renderer/utils'
 import { ComponentProps } from 'react'
-import { BrowseHistoryButtonGroup } from '../BrowseHistoryButtonGroup'
-import { SearchInput } from '../SearchInput'
-import { TopBarContainer } from './TopBar'
 
 export type SearchTopBarProps = ComponentProps<'div'>
 

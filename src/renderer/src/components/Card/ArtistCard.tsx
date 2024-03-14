@@ -1,6 +1,6 @@
+import { CardContainer, CardContainerProps } from '@renderer/components'
 import { capitalize, cn } from '@renderer/utils'
 import { Artist } from '@shared/models'
-import { CardContainer, CardContainerProps } from './CardContainer'
 
 export type ArtistCardProps = CardContainerProps & {
   data: Artist

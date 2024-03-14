@@ -1,7 +1,6 @@
+import { BrowseHistoryButtonGroup, TopBarContainer } from '@renderer/components'
 import { cn } from '@renderer/utils'
 import { ComponentProps } from 'react'
-import { BrowseHistoryButtonGroup } from '../BrowseHistoryButtonGroup'
-import { TopBarContainer } from './TopBar'
 
 export const HomeTopBar = ({ className, ...props }: ComponentProps<'div'>) => {
   return (

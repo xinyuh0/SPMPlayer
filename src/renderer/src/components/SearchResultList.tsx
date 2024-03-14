@@ -1,6 +1,6 @@
+import { Title } from '@renderer/components'
 import { cn } from '@renderer/utils'
 import { ComponentProps } from 'react'
-import { Title } from './Title'
 
 type SearchResultListProps = ComponentProps<'div'> & {
   title: string

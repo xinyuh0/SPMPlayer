@@ -1,7 +1,7 @@
+import { ActionButton, ActionButtonProps } from '@renderer/components'
 import { cn } from '@renderer/utils'
 import { LuArrowLeft } from 'react-icons/lu'
 import { useNavigate } from 'react-router-dom'
-import { ActionButton, ActionButtonProps } from './ActionButton'
 
 export const BackwardButton = ({ className, ...props }: ActionButtonProps) => {
   const navigate = useNavigate()

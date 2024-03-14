@@ -1,10 +1,7 @@
+import { GenreCardList, SearchResult, SearchTopBar, Title } from '@renderer/components'
 import { search } from '@renderer/services/api'
 import { useQuery } from '@tanstack/react-query'
 import { useParams } from 'react-router-dom'
-import { GenreCardList } from '../GenreCardList'
-import { SearchResult } from '../SearchResult'
-import { Title } from '../Title'
-import { SearchTopBar } from '../layout'
 
 export const Search = () => {
   const { query } = useParams()

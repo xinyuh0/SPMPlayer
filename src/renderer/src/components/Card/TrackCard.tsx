@@ -1,7 +1,6 @@
+import { CardContainer, CardContainerProps, PlayButton } from '@renderer/components'
 import { cn, formatDuration } from '@renderer/utils'
 import { Track } from '@shared/models'
-import { PlayButton } from '../Button'
-import { CardContainer, CardContainerProps } from './CardContainer'
 
 export type TrackCardProps = CardContainerProps & {
   data: Track

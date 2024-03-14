@@ -14,7 +14,7 @@ export const SearchInput = ({ className, placeholder, ...props }: SearchInputPro
   const location = useLocation()
 
   const [value, setValue] = useState<string>(query || '')
-  const [isFocused, setIsFocused] = useState<boolean>(true)
+  const [isFocused, setIsFocused] = useState<boolean>(false)
 
   const inputRef = useRef<HTMLInputElement | null>(null)
   const containerRef = useRef<HTMLDivElement | null>(null)

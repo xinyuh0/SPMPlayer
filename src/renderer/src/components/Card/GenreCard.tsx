@@ -1,5 +1,5 @@
+import { CardContainer, CardContainerProps } from '@renderer/components'
 import { formatGenreName } from '@renderer/utils'
-import { CardContainer, CardContainerProps } from './CardContainer'
 
 export type GenreCardProps = CardContainerProps & {
   title: string

@@ -1,6 +1,6 @@
+import { BackwardButton, ForwardButton } from '@renderer/components'
 import { cn } from '@renderer/utils'
 import { ComponentProps } from 'react'
-import { BackwardButton, ForwardButton } from './Button'
 
 export const BrowseHistoryButtonGroup = ({ className, ...props }: ComponentProps<'div'>) => {
   return (

@@ -1,5 +1,5 @@
+import { HomeButton, SearchButton } from '@renderer/components'
 import { ComponentProps } from 'react'
-import { HomeButton, SearchButton } from './Button'
 
 export const ActionButtonGroup = ({ ...props }: ComponentProps<'div'>) => {
   return (

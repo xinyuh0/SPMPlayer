@@ -1,6 +1,6 @@
+import { ActionButton, ActionButtonProps } from '@renderer/components'
 import { cn } from '@renderer/utils'
 import { LuPlay } from 'react-icons/lu'
-import { ActionButton, ActionButtonProps } from './ActionButton'
 
 export const PlayButton = ({ className }: ActionButtonProps) => {
   return (

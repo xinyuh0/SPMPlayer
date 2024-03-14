@@ -1,8 +1,15 @@
+import {
+  AlbumCard,
+  ArtistCard,
+  PlaylistCard,
+  SearchEmpty,
+  SearchLoading,
+  SearchResultList,
+  TrackCard
+} from '@renderer/components'
 import { cn } from '@renderer/utils'
 import { SearchResult as SearchRes } from '@shared/models'
 import { ComponentProps } from 'react'
-import { AlbumCard, ArtistCard, PlaylistCard, TrackCard } from './Card'
-import { SearchResultList } from './SearchResultList'
 
 export type SearchResultProps = ComponentProps<'div'> & {
   data?: SearchRes
@@ -10,7 +17,7 @@ export type SearchResultProps = ComponentProps<'div'> & {
 }
 
 export const SearchResult = ({ data, isLoading, className, ...props }: SearchResultProps) => {
-  if (isLoading) return 'loading...'
+  if (isLoading) return <SearchLoading className={className} />
 
   const empty =
     !data ||
@@ -19,7 +26,7 @@ export const SearchResult = ({ data, isLoading, className, ...props }: SearchRes
       data.albums.total === 0 &&
       data.playlists.total === 0)
 
-  if (empty) return 'empty'
+  if (empty) return <SearchEmpty />
 
   return (
     <div className={cn('flex flex-col justify-start items-start pb-4', className)} {...props}>
