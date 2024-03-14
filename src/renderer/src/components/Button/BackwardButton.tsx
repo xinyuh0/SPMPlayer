@@ -20,7 +20,7 @@ export const BackwardButton = ({ className, ...props }: ActionButtonProps) => {
         className
       )}
       onClick={handleClick}
-      isActive={canGoBackward}
+      forbidden={!canGoBackward}
       {...props}
     >
       <LuArrowLeft className={cn('w-4 h-4 text-zinc-300', { 'text-zinc-400': !canGoBackward })} />

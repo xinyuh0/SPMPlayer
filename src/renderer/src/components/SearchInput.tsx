@@ -2,17 +2,18 @@ import { useDebounce } from '@renderer/hooks/useDebounce'
 import { cn } from '@renderer/utils'
 import { ComponentProps, useEffect, useRef, useState } from 'react'
 import { LuSearch, LuX } from 'react-icons/lu'
-import { useLocation, useNavigate } from 'react-router-dom'
+import { useLocation, useNavigate, useParams } from 'react-router-dom'
 
 export type SearchInputProps = ComponentProps<'div'> & {
   placeholder?: string
 }
 
 export const SearchInput = ({ className, placeholder, ...props }: SearchInputProps) => {
+  const { query } = useParams()
   const navigate = useNavigate()
   const location = useLocation()
 
-  const [value, setValue] = useState<string>('')
+  const [value, setValue] = useState<string>(query || '')
   const [isFocused, setIsFocused] = useState<boolean>(true)
 
   const inputRef = useRef<HTMLInputElement | null>(null)

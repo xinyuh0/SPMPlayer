@@ -1,19 +1,23 @@
+import { cn } from '@renderer/utils'
 import { LuHome } from 'react-icons/lu'
-import { useNavigate } from 'react-router-dom'
+import { useLocation, useNavigate } from 'react-router-dom'
 import { ActionButton, ActionButtonProps } from './ActionButton'
 
 export const HomeButton = ({ ...props }: ActionButtonProps) => {
   const navigate = useNavigate()
+  const location = useLocation()
+
+  const isActive = location.pathname === '/'
 
   const handleClick = () => {
     navigate('/')
   }
 
   return (
-    <ActionButton onClick={handleClick} {...props}>
+    <ActionButton onClick={handleClick} isActive={isActive} {...props}>
       <div className="flex justify-start items-center">
-        <LuHome className="w-4 h-4 text-zinc-300" />
-        <span className="ml-4 text-zinc-300">Home</span>
+        <LuHome className={cn('w-4 h-4 text-zinc-300', { 'text-white': isActive })} />
+        <span className={cn('ml-4 text-zinc-300', { 'text-white': isActive })}>Home</span>
       </div>
     </ActionButton>
   )

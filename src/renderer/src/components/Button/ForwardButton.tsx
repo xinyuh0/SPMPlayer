@@ -20,7 +20,7 @@ export const ForwardButton = ({ className, ...props }: ActionButtonProps) => {
         className
       )}
       onClick={handleClick}
-      isActive={canGoForward}
+      forbidden={!canGoForward}
       {...props}
     >
       <LuArrowRight className={cn('w-4 h-4 text-zinc-300', { 'text-zinc-400': !canGoForward })} />
