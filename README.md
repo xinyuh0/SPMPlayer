@@ -22,9 +22,9 @@ A music player desktop application built with Electron and React, using Spotify 
 - [x] Project initialization
 - [x] Authentication for Spotify Web API
 - [x] Search page UI and functionality
+- [x] Support login via OAuth 2.0
 - [ ] Music playback
 - [ ] Detail pages for tracks, artists, albums and playlists
-- [ ] Support login via OAuth 2.0
 
 ## Project Setup
 
