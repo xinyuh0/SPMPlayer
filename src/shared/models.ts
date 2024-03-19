@@ -104,3 +104,12 @@ export type SearchResult = {
     items: PlayList[]
   }
 }
+
+export type UserInfo = {
+  display_name: string
+  href: string
+  id: string
+  images: Image[]
+  type: string
+  uri: string
+}

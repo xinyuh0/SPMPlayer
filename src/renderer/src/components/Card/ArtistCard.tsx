@@ -1,4 +1,4 @@
-import { CardContainer, CardContainerProps } from '@renderer/components'
+import { CardContainer, CardContainerProps, EmptyAvatar } from '@renderer/components'
 import { capitalize, cn } from '@renderer/utils'
 import { Artist } from '@shared/models'
 
@@ -19,7 +19,7 @@ export const ArtistCard = ({ data, className, ...props }: ArtistCardProps) => {
           className="w-28 h-28 rounded-full object-cover"
         />
       ) : (
-        <div className="w-28 h-28 rounded-full">No image</div>
+        <EmptyAvatar />
       )}
       <div className="w-full text-xs truncate mt-2">{data.name}</div>
       <div className="w-full text-[0.625em] text-zinc-400 truncate">{capitalize(data.type)}</div>

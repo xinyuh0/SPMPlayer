@@ -1,5 +1,5 @@
 import { SPOTIFY_BASE_URL } from '@shared/constant'
-import { GetGenreResponse, SearchResult, SearchType } from '@shared/models'
+import { GetGenreResponse, SearchResult, SearchType, UserInfo } from '@shared/models'
 
 const fetchWithHeaders = async (
   url: string,
@@ -80,6 +80,6 @@ export const search = async (query: string, market: string = 'JP'): Promise<Sear
   })) as SearchResult
 }
 
-export const getUserProfile = async (): Promise<any> => {
-  return await get('/me', {}, 'user')
+export const getUserProfile = async (): Promise<UserInfo> => {
+  return (await get('/me', {}, 'user')) as UserInfo
 }
