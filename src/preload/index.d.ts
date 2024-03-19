@@ -5,7 +5,8 @@ declare global {
     context: {
       getCredentials: () => Promise<CredentialInfo | null>
       generateAccessToken: () => Promise<string | null>
-      readAccessToken: () => Promise<string | null>
+      readAccessToken: (type: 'default' | 'user') => Promise<string | null>
+      login: () => void
     }
   }
 }

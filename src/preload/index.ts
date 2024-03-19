@@ -8,7 +8,8 @@ try {
   contextBridge.exposeInMainWorld('context', {
     getCredentials: () => ipcRenderer.invoke('getCredentials'),
     generateAccessToken: () => ipcRenderer.invoke('generateAccessToken'),
-    readAccessToken: () => ipcRenderer.invoke('readAccessToken')
+    readAccessToken: (type: 'default' | 'user') => ipcRenderer.invoke('readAccessToken', type),
+    login: () => ipcRenderer.invoke('login')
   })
 } catch (e) {
   console.error(e)

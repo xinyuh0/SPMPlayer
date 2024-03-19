@@ -1,8 +1,8 @@
 import { electronApp, is, optimizer } from '@electron-toolkit/utils'
-import { BrowserWindow, app, ipcMain, shell } from 'electron'
+import { BrowserWindow, app, ipcMain, protocol, shell } from 'electron'
 import { join } from 'path'
 import icon from '../../resources/icon.png?asset'
-import { generateAccessToken, readAccessToken, readCredentails } from './lib'
+import { generateAccessToken, login, readAccessToken, readCredentails } from './lib'
 
 function createWindow(): void {
   // Create the browser window.
@@ -53,6 +53,12 @@ app.whenReady().then(() => {
   // Set app user model id for windows
   electronApp.setAppUserModelId('com.electron')
 
+  protocol.handle('login', () => {
+    return new Response('<div>Successfully Login!</div><div>Close in 3 seconds...</div>', {
+      headers: { 'content-type': 'text/html' }
+    })
+  })
+
   // Default open or close DevTools by F12 in development
   // and ignore CommandOrControl + R in production.
   // see https://github.com/alex8088/electron-toolkit/tree/master/packages/utils
@@ -62,7 +68,8 @@ app.whenReady().then(() => {
 
   ipcMain.handle('getCredentials', () => readCredentails())
   ipcMain.handle('generateAccessToken', () => generateAccessToken())
-  ipcMain.handle('readAccessToken', () => readAccessToken())
+  ipcMain.handle('readAccessToken', (_, type: 'default' | 'user') => readAccessToken(type))
+  ipcMain.handle('login', () => login())
 
   createWindow()
 
